@@ -92,6 +92,7 @@ All api actions are accessible with the /api route.  The frontend is accessible 
 + NodeJS 4.2.6
 
 #### Building Releases
+##### NOTE: YOU MUST CLONE THIS INTO $GOPATH/src/factorio-server-manager 
 Creates a release zip for windows and linux: (this will install the dependencies listed in gopkgdeps)
 ```
 git clone https://github.com/mroote/factorio-server-manager.git

@@ -24,15 +24,19 @@ app/bundle.js:
 	@echo "Building Frontend"
 	@cd ui && npm install && npm run build
 
-factorio-server-manager-linux: godeps
+ensure_gopath:
+	@echo Checking '$$GOPATH'
+	@if [[ "${PWD}" != *src/factorio-server-manager ]]; then \
+		echo You must locate this project in '$$GOPATH/src/factorio-server-manager' && exit 1;\
+	fi
+
+factorio-server-manager-linux: godeps ensure_gopath
 	@echo "Building Backend - Linux"
-	@GOPATH="${GOPATH}:${PDW}"
 	@mkdir -p factorio-server-manager
 	@GOOS=linux GOARCH=amd64 go build -o factorio-server-manager/factorio-server-manager ./src
 
-factorio-server-manager-windows: godeps
+factorio-server-manager-windows: godeps ensure_gopath
 	@echo "Building Backend - Windows"
-	@GOPATH="${GOPATH}:${PDW}"
 	@mkdir -p factorio-server-manager
 	@GOOS=windows GOARCH=386 go build -o factorio-server-manager/factorio-server-manager.exe ./src
 
